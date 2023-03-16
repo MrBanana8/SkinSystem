@@ -1,0 +1,8 @@
+name: SkinSystem
+version: '${project.version}'
+main: me.notbanana8.skinsystem.SkinSystem
+api-version: 1.18
+authors: [ NotBanana8 ]
+
+commands:
+  skins:
