@@ -71,15 +71,14 @@ public class Gui implements Listener {
         if(item == null) return;
         if(!isMatching(item, event.getCurrentItem())) return;
 
-        for(Skin skin: skins){
-            if(skin.getMaterial() == event.getCurrentItem().getType()){
-                meta.setCustomModelData(ModelData);
-                player.sendMessage(item.getType().toString());
-                item.setItemMeta(meta);
-                player.getInventory().setItemInMainHand(item);
-                player.updateInventory();
-            }
+        for(Skin skin: SkinStorageUtil.skins){
+            if(skin.getMaterial() != item.getType()) return;
+            meta.setCustomModelData(ModelData);
+            item.setItemMeta(meta);
+            player.getInventory().setItemInMainHand(item);
+            player.updateInventory();
         }
+
         if (event.getCurrentItem().getType() == Material.BARRIER) {
             meta.setCustomModelData(0);
             item.setItemMeta(meta);

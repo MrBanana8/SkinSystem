@@ -3,6 +3,7 @@ package me.notbanana8.skinsystem.commands;
 import me.notbanana8.skinsystem.Gui;
 import me.notbanana8.skinsystem.commands.subcommands.CreateCommand;
 import me.notbanana8.skinsystem.commands.subcommands.DeleteCommand;
+import me.notbanana8.skinsystem.commands.subcommands.ListCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,6 +18,7 @@ public class CommandManager implements CommandExecutor {
     public CommandManager(){
         subCommands.add(new CreateCommand());
         subCommands.add(new DeleteCommand());
+        subCommands.add(new ListCommand());
     }
 
     @Override

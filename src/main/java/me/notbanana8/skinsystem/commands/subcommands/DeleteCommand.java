@@ -28,7 +28,7 @@ public class DeleteCommand extends SubCommand {
 
     @Override
     public void preform(Player player, String[] args) {
-        if (args.length > 2){
+        if (args.length > 1){
             SkinStorageUtil.deleteSkin(args[1]);
             player.sendMessage("you have successfully deleted the skin!");
         } else if (args.length == 1){

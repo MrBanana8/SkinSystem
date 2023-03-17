@@ -1,7 +1,6 @@
 package me.notbanana8.skinsystem.data;
 
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 
 public class Skin {
 

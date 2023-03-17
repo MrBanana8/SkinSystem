@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SkinStorageUtil {
 
-    private static ArrayList<Skin> skins = new ArrayList<>();
+    public static ArrayList<Skin> skins = new ArrayList<>();
     public static Skin createSkin(String name, Material material, Integer modelData){
         Skin skin = new Skin(name,material ,modelData);
         skins.add(skin);
@@ -62,7 +62,7 @@ public class SkinStorageUtil {
         return null;
     }
 
-    public static List<Skin> findSkins(){
+    public static ArrayList<Skin> findSkins(){
         return skins;
     }
 
