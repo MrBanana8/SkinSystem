@@ -8,7 +8,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CreateCommand extends SubCommand {
     public static HashMap<String, Skin> skinMap = new HashMap<String, Skin>();
@@ -24,7 +26,7 @@ public class CreateCommand extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/skins create <Name> <Material> <CustomModelData>";
+        return "/skins create <Name> <Material> <Model>";
     }
 
     @Override
@@ -42,6 +44,23 @@ public class CreateCommand extends SubCommand {
         } else if (args.length < 3){
             player.sendMessage(getSyntax());
         }
+    }
+
+    @Override
+    public List<String> getSubcommandArgs(Player player, String[] args) {
+        List<String> createArgs = new ArrayList<>();
+            if(args.length == 2){
+                createArgs.add("<name>");
+                return createArgs;
+            } else if (args.length == 3) {
+                createArgs.add("<base_material>");
+                return createArgs;
+            } else if (args.length == 4) {
+                createArgs.add("<custom_model>");
+                return createArgs;
+            }
+
+        return null;
     }
 
     public static boolean isNum(String strNum) {

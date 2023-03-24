@@ -6,6 +6,7 @@ import me.notbanana8.skinsystem.utils.SkinStorageUtil;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListCommand extends SubCommand {
     @Override
@@ -40,5 +41,10 @@ public class ListCommand extends SubCommand {
         //    player.sendMessage(getSyntax());
         //}
 
+    }
+
+    @Override
+    public List<String> getSubcommandArgs(Player player, String[] args) {
+        return null;
     }
 }

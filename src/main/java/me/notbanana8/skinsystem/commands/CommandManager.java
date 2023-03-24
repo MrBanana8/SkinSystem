@@ -8,11 +8,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CommandManager implements CommandExecutor {
+public class CommandManager implements TabExecutor {
     private ArrayList<SubCommand> subCommands = new ArrayList<>();
 
     public CommandManager(){
@@ -44,5 +46,26 @@ public class CommandManager implements CommandExecutor {
 
     public ArrayList<SubCommand> getSubCommands(){
         return subCommands;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        for(SubCommand subcmd: getSubCommands()){
+            if(!sender.hasPermission(subcmd.getPermission())) return null;
+        }
+        if(args.length == 1){
+            ArrayList<String> subCommandArgs = new ArrayList<>();
+            for (int i = 0 ; i < getSubCommands().size(); i++){
+                subCommandArgs.add(getSubCommands().get(i).getName());
+            }
+            return subCommandArgs;
+        } else if (args.length > 1) {
+            for(int i = 0 ; i < getSubCommands().size(); i++){
+                if(args[0].equalsIgnoreCase(getSubCommands().get(i).getName())){
+                    return getSubCommands().get(i).getSubcommandArgs((Player) sender, args);
+                }
+            }
+        }
+        return null;
     }
 }

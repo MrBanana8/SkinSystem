@@ -24,7 +24,7 @@ public class Gui implements Listener {
 
 
     public void newGui(Player player) {
-        inv = Bukkit.createInventory(null, 9, Guiname);
+        inv = Bukkit.createInventory(null, 18, Guiname);
         player.openInventory(inv);
         initializeItems();
     }
@@ -33,7 +33,7 @@ public class Gui implements Listener {
         for(Skin skin: skins){
             inv.addItem(createGuiItem(skin.getMaterial(), skin.getModel(), skin.getName()));
         }
-        inv.setItem(8, createGuiItem(Material.BARRIER, null, ChatColor.RED + "Clear Skin"));
+        inv.setItem(17, createGuiItem(Material.BARRIER, null, ChatColor.RED + "Clear Skin"));
     }
 
     protected ItemStack createGuiItem(final Material material, final Integer cmdata, final String name, final String... lore) {
@@ -69,14 +69,18 @@ public class Gui implements Listener {
             ModelData = event.getCurrentItem().getItemMeta().getCustomModelData();
         event.setCancelled(true);
         if(item == null) return;
-        if(!isMatching(item, event.getCurrentItem())) return;
+        //if(!isMatching(item, event.getCurrentItem())) return;
 
         for(Skin skin: SkinStorageUtil.skins){
-            if(skin.getMaterial() != item.getType()) return;
-            meta.setCustomModelData(ModelData);
-            item.setItemMeta(meta);
-            player.getInventory().setItemInMainHand(item);
-            player.updateInventory();
+            if(event.getCurrentItem().getType() == item.getType()) {
+                player.sendMessage(item.getType().toString());
+                player.sendMessage(skin.getMaterial().toString());
+                meta.setCustomModelData(ModelData);
+                item.setItemMeta(meta);
+                player.getInventory().setItemInMainHand(item);
+                player.updateInventory();
+                break;
+            }
         }
 
         if (event.getCurrentItem().getType() == Material.BARRIER) {
